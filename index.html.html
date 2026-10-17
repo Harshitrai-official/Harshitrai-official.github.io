@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Harshit Rai — AI, Data Science & Cybersecurity practitioner. Building models, breaking boxes, and fortifying systems." />
+  <meta name="theme-color" content="#0a0d12" />
+  <title>Harshit Rai // sec_ops</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0a0d12',
+            slate900: '#0b0f19',
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              neon: '#00ff66',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+            'blink': 'blink 1.1s step-end infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+            'fadeInUp': 'fadeInUp 0.7s ease forwards',
+          },
+          keyframes: {
+            blink: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0' } },
+            float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
+            glow: {
+              '0%': { boxShadow: '0 0 5px #10b981, 0 0 10px #10b981' },
+              '100%': { boxShadow: '0 0 20px #10b981, 0 0 40px #10b981, 0 0 60px #10b981' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+          backgroundImage: {
+            'cyber-grid': `radial-gradient(circle, rgba(16,185,129,0.06) 1px, transparent 1px)`,
+          },
+          backgroundSize: {
+            'grid-32': '32px 32px',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ── Base & scrollbar ── */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0a0d12;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0d12; }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00ff66; }
+
+    /* ── Cyber grid background ── */
+    .cyber-grid-bg {
+      background-color: #0a0d12;
+      background-image: radial-gradient(circle, rgba(16,185,129,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* ── Glassmorphic card ── */
+    .glass-card {
+      background: rgba(15, 23, 36, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 12px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.15), 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(-4px);
+    }
+
+    /* ── Neon text & borders ── */
+    .neon-green { color: #10b981; }
+    .neon-cyan  { color: #06b6d4; }
+    .neon-green-bright { color: #00ff66; }
+
+    .glow-border-green {
+      box-shadow: 0 0 0 1px #10b981, 0 0 8px rgba(16,185,129,0.4);
+    }
+    .glow-border-cyan {
+      box-shadow: 0 0 0 1px #06b6d4, 0 0 8px rgba(6,182,212,0.4);
+    }
+
+    /* ── Animated cursor blink ── */
+    .cursor::after {
+      content: '▋';
+      color: #10b981;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ── Skill badge ── */
+    .skill-badge {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #a7f3d0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+      cursor: default;
+      display: inline-block;
+    }
+    .skill-badge:hover {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+      color: #00ff66;
+      box-shadow: 0 0 10px rgba(16,185,129,0.3);
+    }
+    .skill-badge.cyan {
+      background: rgba(6,182,212,0.08);
+      border-color: rgba(6,182,212,0.25);
+      color: #a5f3fc;
+    }
+    .skill-badge.cyan:hover {
+      background: rgba(6,182,212,0.18);
+      border-color: #06b6d4;
+      color: #22d3ee;
+      box-shadow: 0 0 10px rgba(6,182,212,0.3);
+    }
+
+    /* ── Tech tag ── */
+    .tech-tag {
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3);
+      color: #67e8f9;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* ── Primary CTA button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #0a0d12;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #00ff66, #10b981);
+      box-shadow: 0 0 20px rgba(0,255,102,0.4), 0 4px 16px rgba(16,185,129,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ── Secondary CTA button ── */
+    .btn-secondary {
+      background: transparent;
+      color: #06b6d4;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      border: 1px solid #06b6d4;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      background: rgba(6,182,212,0.12);
+      box-shadow: 0 0 20px rgba(6,182,212,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ── Outline action button ── */
+    .btn-outline {
+      background: transparent;
+      color: #10b981;
+      font-weight: 500;
+      font-size: 0.82rem;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(16,185,129,0.4);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'JetBrains Mono', monospace;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .btn-outline:hover {
+      background: rgba(16,185,129,0.1);
+      border-color: #10b981;
+      box-shadow: 0 0 12px rgba(16,185,129,0.25);
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      background: rgba(10, 13, 18, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(51,65,85,0.4);
+    }
+
+    /* ── Section heading rule ── */
+    .section-rule {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .section-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(16,185,129,0.4), transparent);
+    }
+
+    /* ── Terminal block ── */
+    .terminal-block {
+      background: rgba(5, 8, 14, 0.9);
+      border: 1px solid rgba(51,65,85,0.6);
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .terminal-header {
+      background: rgba(30, 41, 59, 0.5);
+      border-bottom: 1px solid rgba(51,65,85,0.5);
+      border-radius: 10px 10px 0 0;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red   { background: #ef4444; }
+    .dot-yellow{ background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    /* ── Profile badge card ── */
+    .profile-badge {
+      background: rgba(15,23,36,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(51,65,85,0.5);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .profile-badge:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 0 24px rgba(16,185,129,0.15), 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    /* ── Floating particles ── */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.15;
+    }
+
+    /* ── Fade-in on scroll ── */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mobile nav overlay ── */
+    #mobile-menu {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    #mobile-menu.hidden {
+      display: none;
+    }
+
+    /* ── Status dot pulse ── */
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    .pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+    /* ── Hero text gradient ── */
+    .gradient-text {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Section divider ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(16,185,129,0.3), rgba(6,182,212,0.3), transparent);
+    }
+
+    /* ── Project card accent bar ── */
+    .card-accent-bar {
+      height: 3px;
+      border-radius: 2px 2px 0 0;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+    }
+
+    /* ── About highlight ── */
+    .highlight-box {
+      border-left: 3px solid #10b981;
+      padding-left: 1rem;
+      background: rgba(16,185,129,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+
+<body class="cyber-grid-bg min-h-screen">
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav class="navbar fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Brand -->
+        <a href="#hero" class="flex items-center gap-2 group" aria-label="Home">
+          <span class="font-mono text-lg font-bold">
+            <span class="text-slate-100 group-hover:text-emerald-400 transition-colors">Harshit Rai</span>
+            <span class="neon-green"> // </span>
+            <span class="neon-cyan">sec_ops</span>
+          </span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#about"    class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-emerald-400 font-mono transition-colors rounded-md hover:bg-emerald-500/10">About</a>
+          <a href="#skills"   class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-emerald-400 font-mono transition-colors rounded-md hover:bg-emerald-500/10">Arsenal</a>
+          <a href="#projects" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-emerald-400 font-mono transition-colors rounded-md hover:bg-emerald-500/10">Ops</a>
+          <a href="#profiles" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-emerald-400 font-mono transition-colors rounded-md hover:bg-emerald-500/10">Profiles</a>
+          <a href="#contact"  class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-emerald-400 font-mono transition-colors rounded-md hover:bg-emerald-500/10">Contact</a>
+        </div>
+
+        <!-- Status pill + hamburger -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-ring"></span>
+            <span class="text-emerald-400 font-mono text-xs whitespace-nowrap">Available for Collabs &amp; Research</span>
+          </div>
+          <!-- Hamburger -->
+          <button id="menu-btn" class="md:hidden text-slate-400 hover:text-emerald-400 transition-colors p-1" aria-label="Open menu" aria-expanded="false">
+            <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800">
+      <div class="px-4 py-4 space-y-1">
+        <a href="#about"    class="block px-3 py-2.5 text-slate-400 hover:text-emerald-400 font-mono text-sm rounded-md hover:bg-emerald-500/10 transition-colors">About</a>
+        <a href="#skills"   class="block px-3 py-2.5 text-slate-400 hover:text-emerald-400 font-mono text-sm rounded-md hover:bg-emerald-500/10 transition-colors">Arsenal</a>
+        <a href="#projects" class="block px-3 py-2.5 text-slate-400 hover:text-emerald-400 font-mono text-sm rounded-md hover:bg-emerald-500/10 transition-colors">Ops</a>
+        <a href="#profiles" class="block px-3 py-2.5 text-slate-400 hover:text-emerald-400 font-mono text-sm rounded-md hover:bg-emerald-500/10 transition-colors">Profiles</a>
+        <a href="#contact"  class="block px-3 py-2.5 text-slate-400 hover:text-emerald-400 font-mono text-sm rounded-md hover:bg-emerald-500/10 transition-colors">Contact</a>
+        <div class="pt-2 flex items-center gap-2 px-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-ring"></span>
+          <span class="text-emerald-400 font-mono text-xs">Available for Collabs &amp; Research</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+
+    <!-- Decorative glows -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute top-1/3 right-1/3 w-64 h-64 bg-violet-500/4 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <!-- Floating particles -->
+    <div class="particle w-2 h-2 bg-emerald-400" style="top:20%; left:10%; animation-delay:0s; animation-duration:7s;" aria-hidden="true"></div>
+    <div class="particle w-1.5 h-1.5 bg-cyan-400"  style="top:60%; left:85%; animation-delay:2s; animation-duration:9s;" aria-hidden="true"></div>
+    <div class="particle w-1 h-1 bg-emerald-300"   style="top:80%; left:20%; animation-delay:4s; animation-duration:8s;" aria-hidden="true"></div>
+    <div class="particle w-2 h-2 bg-violet-400"    style="top:35%; left:75%; animation-delay:1s; animation-duration:10s;" aria-hidden="true"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+
+      <!-- Terminal overtitle -->
+      <div class="mb-6 inline-flex items-center gap-2 terminal-block px-4 py-2">
+        <span class="neon-green font-mono text-base sm:text-lg font-semibold">$</span>
+        <span class="neon-green font-mono text-base sm:text-lg font-semibold" id="whoami-text">whoami</span>
+        <span class="cursor" aria-hidden="true"></span>
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold mb-5 tracking-tight">
+        <span class="gradient-text">Harshit Rai</span>
+      </h1>
+
+      <!-- Tagline -->
+      <p class="text-lg sm:text-xl lg:text-2xl font-medium text-slate-300 mb-4 max-w-3xl mx-auto leading-relaxed">
+        Bridging Machine Intelligence &amp; Offensive Security:
+        <br class="hidden sm:block" />
+        <span class="neon-green">Building Models</span>, <span class="neon-cyan">Breaking Boxes</span>, and
+        <span class="text-violet-400">Fortifying Systems.</span>
+      </p>
+
+      <!-- Sub-bio -->
+      <p class="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-10 font-mono leading-relaxed">
+        <span class="text-slate-600">//</span> AI &amp; Data Science student with a strong focus on ethical hacking, Kali Linux workflows,
+        CTF challenges, and practical digital self‑defense.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#projects" class="btn-primary" aria-label="Explore Labs and Projects">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Explore Labs &amp; Projects
+        </a>
+        <a href="https://www.linkedin.com/in/harshit-rai-81b8ab42a/" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Connect on LinkedIn (opens in new tab)">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50" aria-hidden="true">
+        <span class="font-mono text-xs text-slate-600">scroll</span>
+        <div class="w-px h-8 bg-gradient-to-b from-transparent via-emerald-500/60 to-transparent animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto fade-in-section">
+
+      <div class="section-rule">
+        <span class="font-mono text-sm neon-green">01.</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">The Mindset</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+
+        <!-- Main bio -->
+        <div class="lg:col-span-3 space-y-5">
+          <div class="terminal-block p-5">
+            <div class="terminal-header mb-4">
+              <div class="dot dot-red"></div>
+              <div class="dot dot-yellow"></div>
+              <div class="dot dot-green"></div>
+              <span class="ml-2 font-mono text-xs text-slate-500">about.md — Harshit Rai</span>
+            </div>
+            <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+              <p>
+                I operate at the <span class="neon-green font-semibold">intersection of data-driven intelligence and security engineering</span> — a space where models learn attack patterns and machines defend themselves.
+              </p>
+              <p>
+                My focus is rooted in <span class="neon-cyan font-semibold">applied curiosity</span>: identifying how systems fail, exploiting those gaps in controlled environments, and then building smarter defenses. From CTF challenges that sharpen my offensive instincts, to machine learning pipelines that surface hidden anomalies in network traffic — every project is an experiment.
+              </p>
+              <p>
+                I approach <span class="text-violet-400 font-semibold">penetration testing</span> methodologically — systematic reconnaissance, service enumeration, exploit selection, and post-exploitation documentation. Every engagement feeds back into better threat modeling and system hardening decisions.
+              </p>
+              <p>
+                The vision: deploy ML-augmented security tooling that automates routine threat detection, flags behavioral anomalies, and gives security analysts an edge against sophisticated adversaries.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlight boxes -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="highlight-box py-3 px-4 glass-card hover:translate-y-0">
+            <div class="font-mono text-xs neon-green mb-1">// FOCUS AREA 01</div>
+            <div class="font-semibold text-slate-100 text-sm mb-1">Offensive Security &amp; CTF</div>
+            <p class="text-slate-400 text-sm">Kali Linux workflows, penetration testing methodology, hands‑on CTF competitions, and vulnerability research.</p>
+          </div>
+          <div class="highlight-box py-3 px-4 glass-card hover:translate-y-0" style="border-left-color: #06b6d4;">
+            <div class="font-mono text-xs neon-cyan mb-1">// FOCUS AREA 02</div>
+            <div class="font-semibold text-slate-100 text-sm mb-1">AI / ML for Security</div>
+            <p class="text-slate-400 text-sm">Leveraging Scikit‑learn and data pipelines to build threat detection models and automate anomaly classification.</p>
+          </div>
+          <div class="highlight-box py-3 px-4 glass-card hover:translate-y-0" style="border-left-color: #a78bfa;">
+            <div class="font-mono text-xs text-violet-400 mb-1">// FOCUS AREA 03</div>
+            <div class="font-semibold text-slate-100 text-sm mb-1">Digital Privacy &amp; Defense</div>
+            <p class="text-slate-400 text-sm">OPSEC fundamentals, system hardening, threat modeling, and building layered privacy practices.</p>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="glass-card p-4 grid grid-cols-2 gap-3 mt-2">
+            <div class="text-center">
+              <div class="font-mono text-2xl font-bold neon-green">3+</div>
+              <div class="text-slate-500 text-xs font-mono">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="font-mono text-2xl font-bold neon-cyan">CTF</div>
+              <div class="text-slate-500 text-xs font-mono">Active Player</div>
+            </div>
+            <div class="text-center">
+              <div class="font-mono text-2xl font-bold text-violet-400">THM</div>
+              <div class="text-slate-500 text-xs font-mono">DarkNex</div>
+            </div>
+            <div class="text-center">
+              <div class="font-mono text-2xl font-bold text-amber-400">HTB</div>
+              <div class="text-slate-500 text-xs font-mono">Active</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════ SKILLS / ARSENAL ═══════════════════ -->
+  <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto fade-in-section">
+
+      <div class="section-rule">
+        <span class="font-mono text-sm neon-green">02.</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Arsenal</h2>
+        <span class="font-mono text-xs text-slate-600 ml-1">// skills &amp; tools</span>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- Category 1: Security & Pen-Testing -->
+        <div class="glass-card p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-red-500/15 border border-red-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-100 text-sm leading-tight">Security &amp; Pen‑Testing</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">Kali Linux</span>
+            <span class="skill-badge">Nmap</span>
+            <span class="skill-badge">Metasploit</span>
+            <span class="skill-badge">Wireshark</span>
+            <span class="skill-badge">Burp Suite</span>
+            <span class="skill-badge">Vuln Assessment</span>
+            <span class="skill-badge">Network Recon</span>
+          </div>
+        </div>
+
+        <!-- Category 2: AI & Data Science -->
+        <div class="glass-card p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-100 text-sm leading-tight">AI &amp; Data Science</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge cyan">Python</span>
+            <span class="skill-badge cyan">Scikit-learn</span>
+            <span class="skill-badge cyan">Pandas</span>
+            <span class="skill-badge cyan">NumPy</span>
+            <span class="skill-badge cyan">Data Preprocessing</span>
+            <span class="skill-badge cyan">Model Evaluation</span>
+          </div>
+        </div>
+
+        <!-- Category 3: Systems & Ops -->
+        <div class="glass-card p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-100 text-sm leading-tight">Systems &amp; Ops</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge">Bash Scripting</span>
+            <span class="skill-badge">Linux CLI</span>
+            <span class="skill-badge">VirtualBox</span>
+            <span class="skill-badge">VMware</span>
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">GitHub</span>
+          </div>
+        </div>
+
+        <!-- Category 4: Defense & Privacy -->
+        <div class="glass-card p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-violet-500/15 border border-violet-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-100 text-sm leading-tight">Defense &amp; Privacy</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge" style="background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.25); color:#ddd6fe;">Threat Modeling</span>
+            <span class="skill-badge" style="background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.25); color:#ddd6fe;">OPSEC</span>
+            <span class="skill-badge" style="background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.25); color:#ddd6fe;">Digital Privacy</span>
+            <span class="skill-badge" style="background:rgba(167,139,250,0.08); border-color:rgba(167,139,250,0.25); color:#ddd6fe;">System Hardening</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════ PROJECTS / OPS ═══════════════════ -->
+  <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto fade-in-section">
+
+      <div class="section-rule">
+        <span class="font-mono text-sm neon-green">03.</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Featured Ops</h2>
+        <span class="font-mono text-xs text-slate-600 ml-1">// projects &amp; labs</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Project 1: Pen-Testing Lab -->
+        <article class="glass-card overflow-hidden flex flex-col" aria-labelledby="proj1-title">
+          <div class="card-accent-bar" style="background: linear-gradient(90deg, #ef4444, #f97316);"></div>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-red-500/15 border border-red-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/>
+                </svg>
+              </div>
+              <span class="font-mono text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded">SEC LAB</span>
+            </div>
+            <h3 id="proj1-title" class="font-bold text-slate-100 text-base mb-2 leading-snug">Virtual Pen-Testing Lab &amp; Vulnerability Assessment</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
+              Isolated security testing environment running Kali Linux against target machines, focusing on reconnaissance, service enumeration, and exploit analysis. Documents each phase of the kill chain.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag">Kali Linux</span>
+              <span class="tech-tag">Nmap</span>
+              <span class="tech-tag">VirtualBox</span>
+              <span class="tech-tag">Bash</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="https://github.com/Harshitrai-official" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub / Notes
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Iris Classification -->
+        <article class="glass-card overflow-hidden flex flex-col" aria-labelledby="proj2-title">
+          <div class="card-accent-bar" style="background: linear-gradient(90deg, #06b6d4, #8b5cf6);"></div>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <span class="font-mono text-xs text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">ML / AI</span>
+            </div>
+            <h3 id="proj2-title" class="font-bold text-slate-100 text-base mb-2 leading-snug">Iris Classification Pipeline</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
+              Clean machine learning classification pipeline built with Scikit-learn demonstrating dataset preprocessing, decision tree modeling, and evaluation metrics. Clear, reproducible, and documented.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">Pandas</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="https://github.com/Harshitrai-official/iris-classification-pipeline" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                Source Code
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Python CLI Bot -->
+        <article class="glass-card overflow-hidden flex flex-col" aria-labelledby="proj3-title">
+          <div class="card-accent-bar" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <span class="font-mono text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">PYTHON / CLI</span>
+            </div>
+            <h3 id="proj3-title" class="font-bold text-slate-100 text-base mb-2 leading-snug">Interactive Python CLI Bot</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
+              Lightweight intent-matching and regex-driven terminal agent for automated task querying and terminal interaction. Demonstrates practical NLP pattern matching without heavy dependencies.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Regular Expressions</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="https://github.com/Harshitrai-official/interactive-python-cli-bot" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                Source Code
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════ PROFILES ═══════════════════ -->
+  <section id="profiles" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto fade-in-section">
+
+      <div class="section-rule">
+        <span class="font-mono text-sm neon-green">04.</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Cyber Profiles</h2>
+        <span class="font-mono text-xs text-slate-600 ml-1">// verification hub</span>
+      </div>
+
+      <p class="text-slate-400 font-mono text-sm mb-10 max-w-xl">
+        <span class="neon-green">$</span> cat /etc/profiles.conf <span class="text-slate-600">— verified across platforms</span>
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/harshit-rai-81b8ab42a/" target="_blank" rel="noopener noreferrer" class="profile-badge group" aria-label="LinkedIn profile (opens in new tab)">
+          <div class="w-12 h-12 rounded-xl bg-[#0077b5]/20 border border-[#0077b5]/40 flex items-center justify-center flex-shrink-0 group-hover:border-[#0077b5]/70 transition-colors" aria-hidden="true">
+            <svg class="w-6 h-6 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-100 text-sm group-hover:text-[#0077b5] transition-colors">LinkedIn</div>
+            <div class="font-mono text-xs text-slate-500 truncate">Harshit Rai</div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0077b5]"></span>
+              <span class="font-mono text-xs text-slate-600">verified</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- TryHackMe -->
+        <a href="https://tryhackme.com/p/DarkNex?utm_campaign=social_share&utm_medium=social&utm_content=profile&cardVersion=bef672fa4fa8&utm_source=copy&sharerId=6a33d6cfd14944e6887659d1" target="_blank" rel="noopener noreferrer" class="profile-badge group" aria-label="TryHackMe profile DarkNex (opens in new tab)">
+          <div class="w-12 h-12 rounded-xl bg-[#1db954]/10 border border-[#1db954]/30 flex items-center justify-center flex-shrink-0 group-hover:border-[#1db954]/60 transition-colors" aria-hidden="true">
+            <svg class="w-6 h-6 text-[#1db954]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-100 text-sm group-hover:text-[#1db954] transition-colors">TryHackMe</div>
+            <div class="font-mono text-xs text-slate-500">DarkNex</div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#1db954]"></span>
+              <span class="font-mono text-xs text-slate-600">active</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hack The Box -->
+        <a href="https://profile.hackthebox.com/profile/019fbd92-3ca8-73d9-a543-965415155f57?utm_medium=copy_url" target="_blank" rel="noopener noreferrer" class="profile-badge group" aria-label="Hack The Box profile (opens in new tab)">
+          <div class="w-12 h-12 rounded-xl bg-[#9fef00]/10 border border-[#9fef00]/30 flex items-center justify-center flex-shrink-0 group-hover:border-[#9fef00]/60 transition-colors" aria-hidden="true">
+            <svg class="w-6 h-6 text-[#9fef00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-100 text-sm group-hover:text-[#9fef00] transition-colors">Hack The Box</div>
+            <div class="font-mono text-xs text-slate-500">HTB Profile</div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#9fef00]"></span>
+              <span class="font-mono text-xs text-slate-600">active</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/Harshitrai-official" target="_blank" rel="noopener noreferrer" class="profile-badge group" aria-label="GitHub profile (opens in new tab)">
+          <div class="w-12 h-12 rounded-xl bg-slate-700/30 border border-slate-600/40 flex items-center justify-center flex-shrink-0 group-hover:border-slate-400/60 transition-colors" aria-hidden="true">
+            <svg class="w-6 h-6 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <div class="font-semibold text-slate-100 text-sm group-hover:text-slate-300 transition-colors">GitHub</div>
+            <div class="font-mono text-xs text-slate-500">Harshitrai-official</div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+              <span class="font-mono text-xs text-slate-600">profile</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════ CONTACT / FOOTER ═══════════════════ -->
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto fade-in-section">
+
+      <div class="section-rule">
+        <span class="font-mono text-sm neon-green">05.</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">Contact</h2>
+        <span class="font-mono text-xs text-slate-600 ml-1">// establish connection</span>
+      </div>
+
+      <!-- Terminal contact block -->
+      <div class="terminal-block mb-10 overflow-hidden">
+        <div class="terminal-header">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+          <span class="ml-2 font-mono text-xs text-slate-500">terminal — bash</span>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="font-mono text-sm sm:text-base space-y-2">
+            <p>
+              <span class="neon-green">harshit@local</span>
+              <span class="text-slate-600">:</span>
+              <span class="neon-cyan">~</span>
+              <span class="text-slate-600">$ </span>
+              <span class="text-slate-200">ping -c 1 contact</span>
+            </p>
+            <p class="text-slate-500 pl-0">PING contact (0.0.0.0): 56 data bytes</p>
+            <p class="neon-green pl-0">64 bytes from harshit: icmp_seq=0 ttl=64 time=&lt;1ms</p>
+            <p class="text-slate-500 pl-0">--- contact ping statistics ---</p>
+            <p class="text-slate-400 pl-0">1 packets transmitted, 1 received, 0% packet loss</p>
+            <p class="mt-4">
+              <span class="neon-green">harshit@local</span>
+              <span class="text-slate-600">:</span>
+              <span class="neon-cyan">~</span>
+              <span class="text-slate-600">$ </span>
+              <span class="text-slate-200">echo "Open for research, collabs, and sec discussions."</span>
+            </p>
+            <p class="text-emerald-300 pl-0">Open for research, collabs, and sec discussions.</p>
+            <p class="mt-2">
+              <span class="neon-green">harshit@local</span>
+              <span class="text-slate-600">:</span>
+              <span class="neon-cyan">~</span>
+              <span class="text-slate-600">$ </span>
+              <span class="cursor" aria-hidden="true"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact action buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        <a href="mailto:hr19092007@gmail.com" class="btn-primary" aria-label="Send an email">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Send Email
+        </a>
+        <a href="https://www.linkedin.com/in/harshit-rai-81b8ab42a/" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="LinkedIn profile (opens in new tab)">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://tryhackme.com/p/DarkNex?utm_campaign=social_share&utm_medium=social&utm_content=profile&cardVersion=bef672fa4fa8&utm_source=copy&sharerId=6a33d6cfd14944e6887659d1" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm" aria-label="TryHackMe DarkNex (opens in new tab)">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          TryHackMe — DarkNex
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="border-t border-slate-800/60 pt-8 text-center">
+        <div class="font-mono text-xs text-slate-600 mb-3">
+          <span class="neon-green">harshit@local</span><span class="text-slate-700">:</span><span class="neon-cyan">~</span><span class="text-slate-700">$ </span>
+          <span id="footer-timestamp"></span>
+        </div>
+        <p class="font-mono text-xs text-slate-700">
+          © <span id="footer-year"></span> Harshit Rai. Built with semantic HTML5 · Tailwind CSS · Vanilla JS.
+          All operations authorized.
+        </p>
+        <p class="font-mono text-xs text-slate-800 mt-1">
+          <span class="neon-green opacity-40">// </span>hack the planet, ethically.
+        </p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+  <script>
+    // ── Mobile nav toggle ──
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen  = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      iconOpen.classList.toggle('hidden', !isOpen);
+      iconClose.classList.toggle('hidden', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Scroll-based fade-in for sections ──
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+
+    // ── Active nav link highlight on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              const isActive = link.getAttribute('href') === `#${id}`;
+              link.classList.toggle('text-emerald-400', isActive);
+              link.classList.toggle('text-slate-400', !isActive);
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // ── Footer timestamp ──
+    function updateTimestamp() {
+      const now = new Date();
+      const ts = now.toISOString().replace('T', ' ').slice(0, 19) + ' UTC+5:30';
+      const el = document.getElementById('footer-timestamp');
+      if (el) el.textContent = `echo "${ts}"`;
+    }
+    updateTimestamp();
+    setInterval(updateTimestamp, 1000);
+
+    // ── Footer year ──
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // ── Typed effect for whoami text ──
+    (function() {
+      const target = document.getElementById('whoami-text');
+      if (!target) return;
+      const text = 'whoami';
+      target.textContent = '';
+      let i = 0;
+      function type() {
+        if (i <= text.length) {
+          target.textContent = text.slice(0, i);
+          i++;
+          setTimeout(type, 100);
+        }
+      }
+      setTimeout(type, 600);
+    })();
+
+    // ── Keyboard accessibility: close menu on Escape ──
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
